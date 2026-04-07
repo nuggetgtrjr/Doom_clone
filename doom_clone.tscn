@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dwfxeppqd310w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsd72"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_27eo1"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Doom clone" type="Node3D" unique_id=1054364427]
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=873549495]
+mesh = SubResource("PlaneMesh_rsd72")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1119467095]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1003580060]
+shape = SubResource("ConcavePolygonShape3D_27eo1")
