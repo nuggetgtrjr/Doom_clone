@@ -1,10 +1,120 @@
 [gd_scene format=3 uid="uid://dtwobdrwdl2ii"]
 
 [ext_resource type="Script" uid="uid://bpmkyvjcshheu" path="res://Scenes/player.gd" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://byc7plq47fh7h" path="res://weapons/sword.tscn" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v0iea"]
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.09348945, 0.037833974, -0.012007088)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2092449, -0.07854861, -0.40570903)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.99999994, 1.0000001, 0.9999998)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sword:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.0000001, 1.0000001, 0.9999999)]
+}
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+resource_name = "SwordSwing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.15, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.100421086, 0.009132225, -0.30637643), Vector3(0.029614637, -0.5200275, -1.6708776), Vector3(-0.031220436, 1.0619392, -1.7797927), Vector3(-0.031220453, 2.7723444, -1.7797927), Vector3(0.100421086, 0.009132225, -0.30637643)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.15, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2092449, -0.07854861, -0.40570903), Vector3(0.0037748814, 0.11995202, -0.48340726), Vector3(0.0037748814, 0.11995202, -0.48340726), Vector3(0.0037748814, 0.11995202, -0.48340726), Vector3(0.209, -0.078, -0.405)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.99999994, 1.0000001, 0.9999998)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sword:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.15, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.0000001, 1.0000001, 0.9999999), Vector3(1, 1.7, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
+_data = {
+&"RESET": SubResource("Animation_cvnsp"),
+&"SwordSwing": SubResource("Animation_6t5aa")
+}
 
 [node name="Player" type="CharacterBody3D" unique_id=1903472945]
 script = ExtResource("1_v0iea")
@@ -13,7 +123,7 @@ script = ExtResource("1_v0iea")
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1728560260]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50213516, 0)
+transform = Transform3D(0.9999715, 0.0067267017, 0.0034315183, -0.006710128, 0.9999659, -0.0048220013, -0.0034638147, 0.0047988542, 0.9999825, 0, 0.50213516, 0)
 current = true
 
 [node name="bulletspawn" type="Node3D" parent="Camera3D" unique_id=1995787277]
@@ -21,3 +131,12 @@ current = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1442725324]
 transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 0.95, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_v0iea")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=522001836]
+transform = Transform3D(0.99916995, 0.015529039, 0.03765976, -0.011954366, 0.9955614, -0.09335331, -0.03894229, 0.09282565, 0.9949204, 0.2092449, -0.07854861, -0.40570903)
+
+[node name="sword" parent="Node3D" unique_id=2025803595 instance=ExtResource("2_cvnsp")]
+transform = Transform3D(-0.0961055, -0.17938365, -0.9790736, 0.5347555, 0.8203134, -0.20278727, 0.83952403, -0.54305404, 0.017089771, -0.00061933696, 0.019877285, 0.005630523)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=796709798]
+libraries/ = SubResource("AnimationLibrary_vgqql")

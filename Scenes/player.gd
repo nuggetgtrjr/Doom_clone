@@ -34,8 +34,8 @@ func _physics_process(delta: float) -> void:
 		SPEED = 10.0
 	else:
 		SPEED = 5.0
-	if Input.is_action_just_pressed("player_shoot"):
-		shoot()
+	#if Input.is_action_just_pressed("player_shoot"):
+		#shoot()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -50,11 +50,16 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func shoot():
+func slash():
+	if Input.is_action_pressed("player_shoot"):
+		if not $Node3D/AnimationPlayer.is.playing("SwordSwing"):
+			$Node3D/AnimationPlayer.play("SwordSwing")
+
+#func shoot():
 	#handles shooting
-	var bullet = bulletscene.instantiate()
-	get_parent().add_child(bullet)
-	bullet.global_transform = bulletspawn.global_transform
-	bullet.scale= Vector3(0.1, 0.1, 0.1)
-	ammo -= 1
+	#var bullet = bulletscene.instantiate()
+	#get_parent().add_child(bullet)
+	#bullet.global_transform = bulletspawn.global_transform
+	#bullet.scale= Vector3(0.1, 0.1, 0.1)
+	#ammo -= 1
 	
