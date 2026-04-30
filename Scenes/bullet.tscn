@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d0kojqlharypr"]
 
+[ext_resource type="Script" uid="uid://lrvoqgsjwqc" path="res://Scenes/bullet.gd" id="1_oduel"]
 [ext_resource type="Texture2D" uid="uid://dmdxp53hb3tl5" path="res://images/download.jpg" id="1_xjght"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8qja"]
@@ -9,6 +10,7 @@ albedo_texture = ExtResource("1_xjght")
 height = 1.9487305
 
 [node name="Bullet" type="Area3D" unique_id=487034298]
+script = ExtResource("1_oduel")
 
 [node name="BulletMesh" type="CSGCombiner3D" parent="." unique_id=1636975596]
 material_override = SubResource("StandardMaterial3D_v8qja")
@@ -23,3 +25,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9687656, 0.024599075, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=602324439]
 transform = Transform3D(0.0046425452, 0.9999892, 0, -0.9999892, 0.0046425452, 0, 0, 0, 1, 0.53660935, 0.00011901056, 0)
 shape = SubResource("CapsuleShape3D_rtl8c")
+
+[node name="Timer" type="Timer" parent="." unique_id=1429677178]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="destroy"]
