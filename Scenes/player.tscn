@@ -4,6 +4,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v0iea"]
+
 [node name="Player" type="CharacterBody3D" unique_id=1903472945]
 script = ExtResource("1_v0iea")
 
@@ -13,3 +15,9 @@ shape = SubResource("CapsuleShape3D_sh265")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1728560260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50213516, 0)
 current = true
+
+[node name="bulletspawn" type="Node3D" parent="Camera3D" unique_id=1995787277]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1442725324]
+transform = Transform3D(0.95, 0, 0, 0, 1, 0, 0, 0, 0.95, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_v0iea")
