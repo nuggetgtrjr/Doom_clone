@@ -6,15 +6,21 @@ const JUMP_VELOCITY = 4.5
 var mouse_sensitivity = 0.002
 var bulletscene = preload("res://Scenes/bullet.tscn")
 var bulletspawn
-var ammo : int = 5
+@onready var anim = $AnimationPlayer
+
 var player_health = 100
 
+
+
+func slash():
+	anim.play("Slash")
+	
 
 
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	bulletspawn = get_node("Camera3D/bulletspawn")
+
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -34,8 +40,9 @@ func _physics_process(delta: float) -> void:
 		SPEED = 10.0
 	else:
 		SPEED = 5.0
-	#if Input.is_action_just_pressed("player_shoot"):
-		#shoot()
+	if Input.is_action_just_pressed("player_shoot"):
+		slash()
+		
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -50,16 +57,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func slash():
-	if Input.is_action_pressed("player_shoot"):
-		if not $Node3D/AnimationPlayer.is.playing("SwordSwing"):
-			$Node3D/AnimationPlayer.play("SwordSwing")
 
-#func shoot():
-	#handles shooting
-	#var bullet = bulletscene.instantiate()
-	#get_parent().add_child(bullet)
-	#bullet.global_transform = bulletspawn.global_transform
-	#bullet.scale= Vector3(0.1, 0.1, 0.1)
-	#ammo -= 1
-	
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	anim.play("reset")
