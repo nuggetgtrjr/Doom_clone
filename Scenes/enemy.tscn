@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://csc8jfmep8jj1"]
+
+[ext_resource type="Script" uid="uid://dwapipjv3ima0" path="res://Scenes/enemy.gd" id="1_hghv2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ne65n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hghv2"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1572731447 groups=["Enemy"]]
+script = ExtResource("1_hghv2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=760587509]
+mesh = SubResource("CapsuleMesh_ne65n")
+
+[node name="Timer" type="Timer" parent="." unique_id=2135646995]
+wait_time = 2.0
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=357131182]
+shape = SubResource("CapsuleShape3D_hghv2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=272356677]
