@@ -7,12 +7,15 @@ var mouse_sensitivity = 0.002
 var bulletscene = preload("res://Scenes/bullet.tscn")
 var bulletspawn
 @onready var anim = $AnimationPlayer
-
+@onready var P_hitbox = $Camera3D/weapon/sword/Player_hitbox
+@export
 var player_health = 100
 
 
 
 func slash():
+	var damage = 1.0
+	P_hitbox.disabled = false
 	anim.play("Slash")
 	
 
@@ -61,3 +64,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	anim.play("reset")
+	P_hitbox.disabled = true
+	
