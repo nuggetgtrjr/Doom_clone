@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dwfxeppqd310w"]
+
+[ext_resource type="Script" uid="uid://dvsr4ympakwp0" path="res://Scenes/Level_1.gd" id="1_nw7js"]
+[ext_resource type="PackedScene" uid="uid://dtwobdrwdl2ii" path="res://Scenes/player.tscn" id="2_nh7xm"]
+[ext_resource type="Texture2D" uid="uid://3ofgivgj0fjf" path="res://images/images (1).jpg" id="3_j0k67"]
+[ext_resource type="Texture2D" uid="uid://b432b576hqhfv" path="res://images/Racist_Concrete.png" id="4_5r5j8"]
+[ext_resource type="PackedScene" uid="uid://csc8jfmep8jj1" path="res://Scenes/enemy.tscn" id="5_nh7xm"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_akpl7"]
+vertices = PackedVector3Array(-39.514996, 0.43032598, 13.71806, -2.5149956, 0.43032598, 13.71806, -2.5149956, 0.43032598, 11.46806, -0.7649956, 0.43032598, 11.21806, -1.0149956, 0.43032598, -39.53194, -39.514996, 0.43032598, -39.53194, 0.9850044, 0.43032598, 11.21806, 1.2350044, 0.43032598, -39.53194, 2.4850044, 0.43032598, 11.21806, 2.7350044, 0.43032598, 12.96806, 39.485004, 0.43032598, 12.71806, 39.485004, 0.43032598, -39.53194, -1.5149956, 4.430326, 12.21806, -1.5149956, 4.430326, 15.46806, 1.7350044, 4.430326, 15.46806, 1.7350044, 4.430326, 12.21806, -1.2649956, 0.43032598, 12.46806, -1.2649956, 0.43032598, 15.21806, 1.4850044, 0.43032598, 15.21806, 1.4850044, 0.43032598, 12.46806, 2.7350044, 0.43032598, 14.71806, 39.485004, 0.43032598, 14.96806, 0.23500443, 0.43032598, 39.46806, 0.23500443, 0.43032598, 16.46806, -2.5149956, 0.43032598, 16.21806, -39.514996, 0.43032598, 39.46806, 2.4850044, 0.43032598, 16.46806, 39.485004, 0.43032598, 39.46806)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(9, 10, 20), PackedInt32Array(20, 10, 21), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(24, 25, 0), PackedInt32Array(0, 1, 24), PackedInt32Array(22, 23, 26), PackedInt32Array(26, 20, 22), PackedInt32Array(22, 20, 21), PackedInt32Array(22, 21, 27)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jos1"]
+albedo_texture = ExtResource("3_j0k67")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsd72"]
+material = SubResource("StandardMaterial3D_0jos1")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_27eo1"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxsne"]
+albedo_texture = ExtResource("4_5r5j8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_jg3ci"]
+material = SubResource("StandardMaterial3D_vxsne")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ala4b"]
+
+[node name="Doom clone_level 1" type="Node3D" unique_id=1054364427]
+script = ExtResource("1_nw7js")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=319723960]
+transform = Transform3D(0.33897117, 0.940768, 0.0073573045, -0.03092987, 0.0033276957, 0.999516, 0.94028825, -0.33903465, 0.030225823, 0, 20.371042, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1903472945 instance=ExtResource("2_nh7xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.120524, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2110069705]
+navigation_mesh = SubResource("NavigationMesh_akpl7")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D" unique_id=1062899182]
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D/Node3D" unique_id=873549495]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.014995575, 0.05614853, -0.03194046)
+mesh = SubResource("PlaneMesh_rsd72")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Node3D/floor" unique_id=1119467095]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/floor/StaticBody3D" unique_id=1003580060]
+shape = SubResource("ConcavePolygonShape3D_27eo1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Node3D" unique_id=1869691380]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.930326, 13.846809)
+mesh = SubResource("BoxMesh_jg3ci")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Node3D/MeshInstance3D" unique_id=68309825]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Node3D/MeshInstance3D/StaticBody3D" unique_id=801498446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019311905, 0, 0)
+shape = SubResource("BoxShape3D_ala4b")
+
+[node name="Enemy" parent="." unique_id=1572731447 instance=ExtResource("5_nh7xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.220726, 2.7558851, 0)
